@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Visit Taniti Island | Official Tourism Authority</title>
+  <style>
+    :root {
+      --primary: #0f766e;
+      --primary-dark: #115e59;
+      --primary-light: #ccfbf1;
+      --accent: #f59e0b;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --radius: 10px;
+      --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* Top Banner / Navbar */
+    header {
+      background-color: var(--card-bg);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: var(--shadow);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.85rem 1.5rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+    }
+
+    .brand-logo {
+      width: 36px;
+      height: 36px;
+      background: linear-gradient(135deg, var(--primary), #14b8a6);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 800;
+      font-size: 1.2rem;
+    }
+
+    .brand-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      letter-spacing: -0.5px;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 0.75rem;
+    }
+
+    nav button {
+      background: none;
+      border: none;
+      padding: 0.5rem 0.85rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      border-radius: var(--radius);
+      transition: all 0.2s ease;
+    }
+
+    nav button:hover {
+      background-color: var(--primary-light);
+      color: var(--primary-dark);
+    }
+
+    nav button.active {
+      background-color: var(--primary);
+      color: #ffffff;
+    }
+
+    /* Layout Containers */
+    main {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .page-section {
+      display: none;
+      animation: fadeIn 0.25s ease-in-out forwards;
+    }
+
+    .page-section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Hero Banner */
+    .hero {
+      background: linear-gradient(rgba(17, 94, 89, 0.88), rgba(15, 118, 110, 0.82)),
+                  radial-gradient(circle at top right, #38bdf8, #0f766e);
+      color: white;
+      padding: 4rem 2rem;
+      border-radius: 16px;
+      text-align: center;
+      margin-bottom: 2.5rem;
+      box-shadow: var(--shadow);
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      font-weight: 800;
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      max-width: 700px;
+      margin: 0 auto 1.8rem auto;
+      opacity: 0.95;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 0.75rem 1.4rem;
+      border-radius: var(--radius);
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.15s ease, background 0.2s ease;
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn-accent {
+      background-color: var(--accent);
+      color: #78350f;
+    }
+
+    .btn-accent:hover {
+      background-color: #d97706;
+      color: #fff;
+    }
+
+    .btn-light {
+      background-color: #ffffff;
+      color: var(--primary-dark);
+    }
+
+    .btn-light:hover {
+      background-color: var(--primary-light);
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--primary-dark);
+    }
+
+    /* Quick Info Banner */
+    .quick-alerts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .alert-card {
+      background-color: #fff;
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--primary);
+      padding: 1rem;
+      border-radius: var(--radius);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+
+    .alert-card h4 {
+      font-size: 0.95rem;
+      margin-bottom: 0.25rem;
+      color: var(--primary-dark);
+    }
+
+    .alert-card p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* Filter Controls (Guerrilla Testing Improvement) */
+    .filter-bar {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .filter-label {
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-right: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .filter-chip {
+      padding: 0.4rem 0.9rem;
+      background-color: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.15s ease;
+    }
+
+    .filter-chip:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .filter-chip.active {
+      background-color: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+
+    /* Grid & Cards */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-header-bar {
+      height: 120px;
+      background: linear-gradient(135deg, #0d9488, #115e59);
+      display: flex;
+      align-items: flex-end;
+      padding: 1rem;
+      color: #ffffff;
+    }
+
+    .card-header-bar.volcano { background: linear-gradient(135deg, #ea580c, #9a3412); }
+    .card-header-bar.resort { background: linear-gradient(135deg, #0284c7, #0369a1); }
+    .card-header-bar.food { background: linear-gradient(135deg, #e11d48, #be123c); }
+    .card-header-bar.transit { background: linear-gradient(135deg, #059669, #047857); }
+
+    .card-body {
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .card-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+      color: var(--text);
+    }
+
+    .card-tag {
+      display: inline-block;
+      align-self: flex-start;
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      font-size: 0.75rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+
+    .card-description {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      flex-grow: 1;
+    }
+
+    .card-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .card-price {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+    }
+
+    /* Modal Dialog */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 1rem;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 1.75rem;
+      max-width: 480px;
+      width: 100%;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+    }
+
+    .modal h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .modal p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+    }
+
+    .modal form label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin: 0.5rem 0 0.25rem 0;
+    }
+
+    .modal form input, .modal form select {
+      width: 100%;
+      padding: 0.6rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.9rem;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.5rem;
+      margin-top: 1.25rem;
+    }
+
+    /* Confirmation Toast */
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: #065f46;
+      color: #fff;
+      padding: 0.75rem 1.25rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+      display: none;
+      z-index: 1100;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-container {
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+      nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header>
+    <div class="nav-container">
+      <div class="brand" onclick="navigateTo('home')">
+        <div class="brand-logo">T</div>
+        <div class="brand-title">Taniti Tourism</div>
+      </div>
+      <nav>
+        <ul>
+          <li><button class="nav-btn active" data-target="home">Home</button></li>
+          <li><button class="nav-btn" data-target="lodging">Lodging</button></li>
+          <li><button class="nav-btn" data-target="attractions">Attractions</button></li>
+          <li><button class="nav-btn" data-target="dining">Dining</button></li>
+          <li><button class="nav-btn" data-target="transit">Transportation</button></li>
+          <li><button class="nav-btn" data-target="faq">Island FAQ</button></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HOME VIEW -->
+    <section id="home" class="page-section active">
+      <div class="hero">
+        <h1>Experience the Wonders of Taniti</h1>
+        <p>Explore lush rainforests, visit an active volcano, relax on pristine Pacific beaches, and discover welcoming island culture.</p>
+        <div class="hero-buttons">
+          <button class="btn btn-accent" onclick="navigateTo('attractions')">Explore Activities</button>
+          <button class="btn btn-light" onclick="navigateTo('lodging')">Find Accommodations</button>
+        </div>
+      </div>
+
+      <div class="quick-alerts">
+        <div class="alert-card">
+          <h4>Currency Accepted</h4>
+          <p>US Dollar ($) is primary. Major credit cards, Euros, and Yen accepted at banks.</p>
+        </div>
+        <div class="alert-card">
+          <h4>Standard 120V Power</h4>
+          <p>Taniti uses 120-volt electrical outlets, identical to United States standards.</p>
+        </div>
+        <div class="alert-card">
+          <h4>Taniti City Bus Transit</h4>
+          <p>Public city transit operates continuously from 5:00 a.m. to 11:00 p.m. daily.</p>
+        </div>
+        <div class="alert-card">
+          <h4>Regulated Hospitality</h4>
+          <p>All hotels, B&Bs, and hostels are strictly inspected by the Tanitian government.</p>
+        </div>
+      </div>
+
+      <h2 style="margin-bottom: 1rem;">Featured Island Highlights</h2>
+      <div class="grid">
+        <div class="card">
+          <div class="card-header-bar volcano"><h3>Active Volcano Tour</h3></div>
+          <div class="card-body">
+            <span class="card-tag">Guided Excursion</span>
+            <div class="card-title">Taniti Volcano Expedition</div>
+            <div class="card-description">Take a safe, guided trek or tour bus into the mountainous interior to view Taniti's live, active volcano up close.</div>
+            <div class="card-meta">
+              <span class="card-price">$65 / person</span>
+              <button class="btn btn-primary" onclick="openBookingModal('Taniti Volcano Expedition', '$65')">Book Excursion</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header-bar resort"><h3>Resort & Coastal Stay</h3></div>
+          <div class="card-body">
+            <span class="card-tag">Luxury Lodging</span>
+            <div class="card-title">Taniti Bay 4-Star Resort</div>
+            <div class="card-description">Enjoy luxury oceanfront pools, spa access, and direct beach access along Yellow Leaf Bay in Merriton Landing.</div>
+            <div class="card-meta">
+              <span class="card-price">$220 / night</span>
+              <button class="btn btn-primary" onclick="openBookingModal('Taniti Bay 4-Star Resort', '$220')">Reserve Room</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header-bar transit"><h3>Island Transit</h3></div>
+          <div class="card-body">
+            <span class="card-tag">Getting Around</span>
+            <div class="card-title">Airport Car & Bike Rentals</div>
+            <div class="card-description">Convenient vehicle rentals near the airport, or explore walkable Taniti City and Merriton Landing with bike rentals.</div>
+            <div class="card-meta">
+              <span class="card-price">From $15 / day</span>
+              <button class="btn btn-primary" onclick="navigateTo('transit')">View Transit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LODGING VIEW -->
+    <section id="lodging" class="page-section">
+      <h2 style="margin-bottom: 0.5rem;">Accommodations & Lodging</h2>
+      <p style="color: var(--text-muted); margin-bottom: 1.5rem;">All lodging options are certified and inspected regularly by the Tanitian government for guest safety and quality.</p>
+      
+      <!-- Filter Chips (Grounded in Guerrilla Usability Feedback) -->
+      <div class="filter-bar">
+        <span class="filter-label">Filter by:</span>
+        <button class="filter-chip active" onclick="filterCards('lodging', 'all', this)">All Lodging</button>
+        <button class="filter-chip" onclick="filterCards('lodging', 'resort', this)">Resorts & Hotels</button>
+        <button class="filter-chip" onclick="filterCards('lodging', 'bnb', this)">Bed & Breakfasts</button>
+        <button class="filter-chip" onclick="filterCards('lodging', 'hostel', this)">Budget Hostels</button>
+      </div>
+
+      <div class="grid">
+        <div class="card lodging-card resort">
+          <div class="card-header-bar resort"><h3>Yellow Leaf Resort</h3></div>
+          <div class="card-body">
+            <span class="card-tag">4-Star Resort</span>
+            <div class="card-title">Yellow Leaf Bay Resort</div>
+            <div class="card-description">Taniti's premier luxury four-star resort featuring private beach frontage, on-site fine dining, and full spa amenities.</div>
+            <div class="card-meta">
+              <span class="card-price">$240 / night</span>
+              <button class="btn btn-primary" onclick="openBookingModal('Yellow Leaf Bay Resort', '$240')">Book Now</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card lodging-card bnb">
+          <div class="card-header-bar"><h3>Island Heritage B&B</h3></div>
+          <div class="card-body">
+            <span class="card-tag">Bed & Breakfast</span>
+            <div class="card-title">Merriton Heritage B&B</div>
+            <div class="card-description">Cozy family-run bed and breakfast near Merriton Landing. Fresh island breakfast included daily with homecooked hospitality.</div>
+            <div class="card-meta">
+              <span class="card-price">$115 / night</span>
+              <button class="btn btn-primary" onclick="openBookingModal('Merriton Heritage B&B', '$115')">Book Now</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card lodging-card resort">
+          <div class="card-header-bar resort"><h3>Taniti City Hotel</h3></div>
+          <div class="card-body">
+            <span class="card-tag">Family Hotel</span>
+            <div class="card-title">Taniti Harbor Family Hotel</div>
+            <div class="card-description">Centrally located in walkable Taniti City, offering spacious suites for family vacations and quick access to city bus stops.</div>
+            <div class="card-meta">
+              <span class="card-price">$145 / night</span>
+              <button class="btn btn-primary" onclick="openBookingModal('Taniti Harbor Family Hotel', '$145')">Book Now</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card lodging-card hostel">
+          <div class="card-header-bar"><h3>Backpacker Hostel</h3></div>
+          <div class="card-body">
+            <span class="card-tag">Hostel</span>
+            <div class="card-title">Pacific Wave Travelers Hostel</div>
+            <div class="card-description">Economical shared dorms and private rooms right next to the surf beach. Community kitchen and weekly tour discounts.</div>
+            <div class="card-meta">
+              <span class="card-price">$38 / night</span>
+              <button class="btn btn-primary" onclick="openBookingModal('Pacific Wave Travelers Hostel', '$38')">Book Now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ATTRACTIONS VIEW -->
+    <section id="attractions" class="page-section">
+      <h2 style="margin-bottom: 0.5rem;">Island Activities & Entertainment</h2>
+      <p style="color: var(--text-muted); margin-bottom: 1.5rem;">From active rainforest hikes to buzzing pubs and bowling in Merriton Landing, explore all that Taniti offers.</p>
+
+      <div class="grid">
+        <div class="card">
+          <div class="card-header-bar volcano"><h3>Volcano Excursions</h3></div>
+          <div class="card-body">
+            <span class="card-tag">Sightseeing</span>
+            <div class="card-title">Guided Volcano Tour</div>
+            <div class="card-description">Guided exploration to the base and observation lookout of Taniti's active volcano. Roundtrip shuttle service included.</div>
+            <div class="card-meta">
+              <span class="card-price">$65 / person</span>
+              <button class="btn btn-primary" onclick="openBookingModal('Guided Volcano Tour', '$65')">Book Tour</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header-bar"><h3>Rainforest Canopy</h3></div>
+          <div class="card-body">
+            <span class="card-tag">Adventure</span>
+            <div class="card-title">Rainforest Zip-Lining</div>
+            <div class="card-description">Glide high over lush tropical rainforest canopies and scenic river valleys with certified expert climbing guides.</div>
+            <div class="card-meta">
+              <span class="card-price">$80 / person</span>
+              <button class="btn btn-primary" onclick="openBookingModal('Rainforest Zip-Lining', '$80')">Book Tour</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header-bar"><h3>Ocean Adventures</h3></div>
+          <div class="card-body">
+            <span class="card-tag">Water Sports</span>
+            <div class="card-title">Snorkeling & Chartered Fishing</div>
+            <div class="card-description">Half-day chartered boat trips leaving Yellow Leaf Bay. Includes snorkeling gear and deep-sea game fishing equipment.</div>
+            <div class="card-meta">
+              <span class="card-price">$95 / person</span>
+              <button class="btn btn-primary" onclick="openBookingModal('Snorkeling & Fishing Charter', '$95')">Book Tour</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header-bar"><h3>Merriton Entertainment</h3></div>
+          <div class="card-body">
+            <span class="card-tag">Nightlife & Culture</span>
+            <div class="card-title">Merriton Landing District</div>
+            <div class="card-description">Visit local art galleries, the history museum, arcade, bowling alley, and enjoy local microbreweries and dance clubs.</div>
+            <div class="card-meta">
+              <span class="card-price">Free Entry</span>
+              <button class="btn btn-primary" onclick="openBookingModal('Merriton Visitor Pass', 'Free')">Get Guide</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DINING VIEW -->
+    <section id="dining" class="page-section">
+      <h2 style="margin-bottom: 0.5rem;">Dining & Island Cuisine</h2>
+      <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Taniti offers 10 diverse restaurants: five local seafood and rice kitchens, three American-style diners, and two Pan-Asian eateries.</p>
+
+      <div class="grid">
+        <div class="card">
+          <div class="card-header-bar food"><h3>Local Seafood</h3></div>
+          <div class="card-body">
+            <span class="card-tag">Island Specialty</span>
+            <div class="card-title">Yellow Leaf Bay Catch</div>
+            <div class="card-description">Authentic Tanitian cuisine featuring fresh daily catches of ocean fish served over aromatic island rice and native spices.</div>
+            <div class="card-meta">
+              <span class="card-price">$$ • Taniti City</span>
+              <button class="btn btn-primary" onclick="openBookingModal('Yellow Leaf Bay Catch Table', 'Reservation')">Reserve Table</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header-bar food"><h3>Pan-Asian Cuisine</h3></div>
+          <div class="card-body">
+            <span class="card-tag">Pan-Asian</span>
+            <div class="card-title">Pacific Rim Wok & Noodle</div>
+            <div class="card-description">Stir-fried noodles, curries, and dumplings utilizing fresh island produce and seafood in an open-air terrace dining room.</div>
+            <div class="card-meta">
+              <span class="card-price">$$ • Merriton Landing</span>
+              <button class="btn btn-primary" onclick="openBookingModal('Pacific Rim Wok Table', 'Reservation')">Reserve Table</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header-bar food"><h3>American Classics</h3></div>
+          <div class="card-body">
+            <span class="card-tag">American Style</span>
+            <div class="card-title">Taniti Grill & Tavern</div>
+            <div class="card-description">Comfort food classics, burgers, steaks, and handcrafted local ales brewed right on the island. Great for families.</div>
+            <div class="card-meta">
+              <span class="card-price">$$ • Taniti City</span>
+              <button class="btn btn-primary" onclick="openBookingModal('Taniti Grill Table', 'Reservation')">Reserve Table</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header-bar food"><h3>Groceries & Marts</h3></div>
+          <div class="card-body">
+            <span class="card-tag">Self-Catering</span>
+            <div class="card-title">Supermarkets & 24/7 Mart</div>
+            <div class="card-description">Two full supermarkets, two local grocers, and a 24-hour convenience store for travel snacks, produce, and toiletries.</div>
+            <div class="card-meta">
+              <span class="card-price">Open 24/7</span>
+              <button class="btn btn-light" onclick="navigateTo('faq')">View Locations</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRANSPORTATION VIEW -->
+    <section id="transit" class="page-section">
+      <h2 style="margin-bottom: 0.5rem;">Getting to & Around Taniti</h2>
+      <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Whether traveling by public city bus, rented car, taxi, or bicycle, getting around Taniti is safe and accessible.</p>
+
+      <div class="grid">
+        <div class="card">
+          <div class="card-header-bar transit"><h3>Public Bus Network</h3></div>
+          <div class="card-body">
+            <span class="card-tag">Operating 5 AM - 11 PM</span>
+            <div class="card-title">Taniti City Public Buses</div>
+            <div class="card-description">Reliable public transit serving Taniti City daily between 5:00 a.m. and 11:00 p.m. Private bus services connect the outer island regions.</div>
+            <div class="card-meta">
+              <span class="card-price">$2.00 flat fare</span>
+              <button class="btn btn-primary" onclick="openBookingModal('Public Transit Pass', '$10 Weekly')">Buy Bus Pass</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header-bar transit"><h3>Rental Cars</h3></div>
+          <div class="card-body">
+            <span class="card-tag">Airport Pickup</span>
+            <div class="card-title">Island Car Rentals</div>
+            <div class="card-description">Located right near the airport terminal. Ideal for exploring the mountainous interior, volcanic trails, and remote beaches.</div>
+            <div class="card-meta">
+              <span class="card-price">From $45 / day</span>
+              <button class="btn btn-primary" onclick="openBookingModal('Rental Car Reservation', '$45/day')">Book Car</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header-bar transit"><h3>Bicycles & Helmets</h3></div>
+          <div class="card-body">
+            <span class="card-tag">Eco-Friendly</span>
+            <div class="card-title">City & Coastal Bike Rentals</div>
+            <div class="card-description">Flat, walkable terrain makes bicycling around Taniti City and Merriton Landing easy. Helmets are provided and required by law.</div>
+            <div class="card-meta">
+              <span class="card-price">From $15 / day</span>
+              <button class="btn btn-primary" onclick="openBookingModal('Bike Rental Bundle', '$15/day')">Rent Bike</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ / ISLAND INFO VIEW -->
+    <section id="faq" class="page-section">
+      <h2 style="margin-bottom: 0.5rem;">Frequently Requested Island Information</h2>
+      <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Important practical guidelines regarding safety, currency, power, and regulations for visitors.</p>
+
+      <div class="grid">
+        <div class="card">
+          <div class="card-body">
+            <span class="card-tag">Financial</span>
+            <div class="card-title">Currency & Banking</div>
+            <div class="card-description">Taniti uses the <strong>U.S. Dollar ($)</strong>. Major credit cards are widely accepted, and local banks facilitate currency exchanges for Euros and Japanese Yen.</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body">
+            <span class="card-tag">Electronics</span>
+            <div class="card-title">Power Outlets</div>
+            <div class="card-description">Standard electrical outlets are <strong>120 volts</strong> (identical to the United States). No international plug adapters are required for US devices.</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body">
+            <span class="card-tag">Regulations</span>
+            <div class="card-title">Alcohol Ordinances & Hours</div>
+            <div class="card-description">Alcohol is not served or sold between <strong>midnight and 9:00 a.m.</strong> The legal drinking age is 18.</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body">
+            <span class="card-tag">Health & Language</span>
+            <div class="card-title">Medical & English Fluency</div>
+            <div class="card-description">One main hospital and several medical clinics are available. The hospital features multilingual personnel. Younger residents speak fluent English.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Interactive Booking Modal -->
+  <div class="modal-overlay" id="bookingModal">
+    <div class="modal">
+      <h3 id="modalTitle">Complete Your Booking</h3>
+      <p id="modalSub">Select dates and party size to confirm your reservation.</p>
+      <form id="reservationForm" onsubmit="handleFormSubmit(event)">
+        <label for="guestName">Full Name</label>
+        <input type="text" id="guestName" required placeholder="Marcus Vance" />
+
+        <label for="guestEmail">Email Address</label>
+        <input type="email" id="guestEmail" required placeholder="marcus@example.com" />
+
+        <label for="partySize">Party Size</label>
+        <select id="partySize">
+          <option value="1">1 Person</option>
+          <option value="2">2 People</option>
+          <option value="4" selected>4 People (Family)</option>
+          <option value="5+">5+ People</option>
+        </select>
+
+        <label for="bookDate">Date</label>
+        <input type="date" id="bookDate" required />
+
+        <div class="modal-actions">
+          <button type="button" class="btn btn-light" onclick="closeBookingModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Confirm Reservation</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toastNotification">✓ Reservation confirmed! Details sent to your email.</div>
+
+  <!-- Interaction Logic -->
+  <script>
+    // Tab Navigation Logic
+    const navButtons = document.querySelectorAll('.nav-btn');
+    const sections = document.querySelectorAll('.page-section');
+
+    function navigateTo(targetId) {
+      sections.forEach(sec => sec.classList.remove('active'));
+      navButtons.forEach(btn => btn.classList.remove('active'));
+
+      const activeSection = document.getElementById(targetId);
+      if (activeSection) {
+        activeSection.classList.add('active');
+      }
+
+      const activeBtn = document.querySelector(`.nav-btn[data-target="${targetId}"]`);
+      if (activeBtn) {
+        activeBtn.classList.add('active');
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    navButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        navigateTo(button.getAttribute('data-target'));
+      });
+    });
+
+    // Filtering Logic for Lodging
+    function filterCards(section, category, buttonElement) {
+      const container = document.getElementById(section);
+      const cards = container.querySelectorAll('.lodging-card');
+      const filterChips = container.querySelectorAll('.filter-chip');
+
+      filterChips.forEach(chip => chip.classList.remove('active'));
+      buttonElement.classList.add('active');
+
+      cards.forEach(card => {
+        if (category === 'all' || card.classList.contains(category)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Modal Interaction Logic
+    const modal = document.getElementById('bookingModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalSub = document.getElementById('modalSub');
+    const toast = document.getElementById('toastNotification');
+
+    function openBookingModal(itemTitle, price) {
+      modalTitle.innerText = `Reserve: ${itemTitle}`;
+      modalSub.innerText = `Rate: ${price} | Instant government-verified booking.`;
+      // Default to today's date formatted YYYY-MM-DD
+      document.getElementById('bookDate').value = new Date().toISOString().split('T')[0];
+      modal.classList.add('active');
+    }
+
+    function closeBookingModal() {
+      modal.classList.remove('active');
+    }
+
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      closeBookingModal();
+      
+      // Trigger confirmation toast
+      toast.style.display = 'block';
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 4000);
+    }
+
+    // Close modal on background click
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeBookingModal();
+    });
+  </script>
+</body>
+</html>
