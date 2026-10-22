@@ -30,6 +30,9 @@
       background-color: var(--bg);
       color: var(--text);
       line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
 
     /* Top Banner / Navbar */
@@ -109,8 +112,10 @@
     /* Layout Containers */
     main {
       max-width: 1200px;
+      width: 100%;
       margin: 2rem auto;
       padding: 0 1.5rem;
+      flex: 1;
     }
 
     .page-section {
@@ -127,12 +132,12 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Hero Banner */
+    /* Hero Banner with Tropical Photography */
     .hero {
-      background: linear-gradient(rgba(17, 94, 89, 0.88), rgba(15, 118, 110, 0.82)),
-                  radial-gradient(circle at top right, #38bdf8, #0f766e);
+      background: linear-gradient(rgba(15, 23, 42, 0.55), rgba(15, 118, 110, 0.75)),
+                  url('https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat;
       color: white;
-      padding: 4rem 2rem;
+      padding: 4.5rem 2rem;
       border-radius: 16px;
       text-align: center;
       margin-bottom: 2.5rem;
@@ -143,6 +148,7 @@
       font-size: 2.5rem;
       margin-bottom: 1rem;
       font-weight: 800;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
     }
 
     .hero p {
@@ -150,6 +156,7 @@
       max-width: 700px;
       margin: 0 auto 1.8rem auto;
       opacity: 0.95;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
     }
 
     .hero-buttons {
@@ -289,19 +296,42 @@
       box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
     }
 
-    .card-header-bar {
-      height: 120px;
-      background: linear-gradient(135deg, #0d9488, #115e59);
+    /* Card Image Container Matching Wireframe IMG Slots */
+    .card-img-wrapper {
+      position: relative;
+      height: 180px;
+      width: 100%;
+      overflow: hidden;
+      background-color: #cbd5e1;
+    }
+
+    .card-img-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.35s ease;
+    }
+
+    .card:hover .card-img-wrapper img {
+      transform: scale(1.05);
+    }
+
+    .card-img-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(15, 23, 42, 0.75) 0%, rgba(15, 23, 42, 0.1) 60%);
       display: flex;
       align-items: flex-end;
-      padding: 1rem;
+      padding: 0.85rem 1.25rem;
       color: #ffffff;
     }
 
-    .card-header-bar.volcano { background: linear-gradient(135deg, #ea580c, #9a3412); }
-    .card-header-bar.resort { background: linear-gradient(135deg, #0284c7, #0369a1); }
-    .card-header-bar.food { background: linear-gradient(135deg, #e11d48, #be123c); }
-    .card-header-bar.transit { background: linear-gradient(135deg, #059669, #047857); }
+    .card-img-overlay h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    }
 
     .card-body {
       padding: 1.25rem;
@@ -348,6 +378,23 @@
       font-size: 1.1rem;
       font-weight: 700;
       color: var(--primary-dark);
+    }
+
+    /* Footer with APA Attribution */
+    footer {
+      background-color: var(--card-bg);
+      text-align: center;
+      padding: 2rem 1.5rem;
+      margin-top: 3rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    footer a {
+      color: var(--primary-dark);
+      text-decoration: underline;
+      font-weight: 600;
     }
 
     /* Modal Dialog */
@@ -492,9 +539,12 @@
       <h2 style="margin-bottom: 1rem;">Featured Island Highlights</h2>
       <div class="grid">
         <div class="card">
-          <div class="card-header-bar volcano"><h3>Active Volcano Tour</h3></div>
+          <div class="card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=700&q=80" alt="Active Volcano Tour" />
+            <div class="card-img-overlay"><h3>Active Volcano Tour</h3></div>
+          </div>
           <div class="card-body">
-            <span class="card-tag">Guided Excursion</span>
+            <span class="card-tag">Guided Excursion - Shuttle Included</span>
             <div class="card-title">Taniti Volcano Expedition</div>
             <div class="card-description">Take a safe, guided trek or tour bus into the mountainous interior to view Taniti's live, active volcano up close.</div>
             <div class="card-meta">
@@ -505,7 +555,10 @@
         </div>
 
         <div class="card">
-          <div class="card-header-bar resort"><h3>Resort & Coastal Stay</h3></div>
+          <div class="card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=700&q=80" alt="Taniti Bay 4-Star Resort" />
+            <div class="card-img-overlay"><h3>Resort & Coastal Stay</h3></div>
+          </div>
           <div class="card-body">
             <span class="card-tag">Luxury Lodging</span>
             <div class="card-title">Taniti Bay 4-Star Resort</div>
@@ -518,7 +571,10 @@
         </div>
 
         <div class="card">
-          <div class="card-header-bar transit"><h3>Island Transit</h3></div>
+          <div class="card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?auto=format&fit=crop&w=700&q=80" alt="Island Car and Bike Rentals" />
+            <div class="card-img-overlay"><h3>Island Transit</h3></div>
+          </div>
           <div class="card-body">
             <span class="card-tag">Getting Around</span>
             <div class="card-title">Airport Car & Bike Rentals</div>
@@ -537,7 +593,7 @@
       <h2 style="margin-bottom: 0.5rem;">Accommodations & Lodging</h2>
       <p style="color: var(--text-muted); margin-bottom: 1.5rem;">All lodging options are certified and inspected regularly by the Tanitian government for guest safety and quality.</p>
       
-      <!-- Filter Chips (Grounded in Guerrilla Usability Feedback) -->
+      <!-- Filter Chips (From Guerrilla Usability Feedback) -->
       <div class="filter-bar">
         <span class="filter-label">Filter by:</span>
         <button class="filter-chip active" onclick="filterCards('lodging', 'all', this)">All Lodging</button>
@@ -548,9 +604,12 @@
 
       <div class="grid">
         <div class="card lodging-card resort">
-          <div class="card-header-bar resort"><h3>Yellow Leaf Resort</h3></div>
+          <div class="card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=700&q=80" alt="Yellow Leaf Bay Resort" />
+            <div class="card-img-overlay"><h3>Yellow Leaf Resort</h3></div>
+          </div>
           <div class="card-body">
-            <span class="card-tag">4-Star Resort</span>
+            <span class="card-tag">4-Star Resort - Merriton Landing</span>
             <div class="card-title">Yellow Leaf Bay Resort</div>
             <div class="card-description">Taniti's premier luxury four-star resort featuring private beach frontage, on-site fine dining, and full spa amenities.</div>
             <div class="card-meta">
@@ -561,9 +620,12 @@
         </div>
 
         <div class="card lodging-card bnb">
-          <div class="card-header-bar"><h3>Island Heritage B&B</h3></div>
+          <div class="card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=700&q=80" alt="Merriton Heritage B&B" />
+            <div class="card-img-overlay"><h3>Island Heritage B&B</h3></div>
+          </div>
           <div class="card-body">
-            <span class="card-tag">Bed & Breakfast</span>
+            <span class="card-tag">Bed & Breakfast - Merriton Landing</span>
             <div class="card-title">Merriton Heritage B&B</div>
             <div class="card-description">Cozy family-run bed and breakfast near Merriton Landing. Fresh island breakfast included daily with homecooked hospitality.</div>
             <div class="card-meta">
@@ -574,9 +636,12 @@
         </div>
 
         <div class="card lodging-card resort">
-          <div class="card-header-bar resort"><h3>Taniti City Hotel</h3></div>
+          <div class="card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=700&q=80" alt="Taniti Harbor Family Hotel" />
+            <div class="card-img-overlay"><h3>Taniti City Hotel</h3></div>
+          </div>
           <div class="card-body">
-            <span class="card-tag">Family Hotel</span>
+            <span class="card-tag">Family Hotel - Taniti City</span>
             <div class="card-title">Taniti Harbor Family Hotel</div>
             <div class="card-description">Centrally located in walkable Taniti City, offering spacious suites for family vacations and quick access to city bus stops.</div>
             <div class="card-meta">
@@ -587,9 +652,12 @@
         </div>
 
         <div class="card lodging-card hostel">
-          <div class="card-header-bar"><h3>Backpacker Hostel</h3></div>
+          <div class="card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?auto=format&fit=crop&w=700&q=80" alt="Pacific Wave Travelers Hostel" />
+            <div class="card-img-overlay"><h3>Backpacker Hostel</h3></div>
+          </div>
           <div class="card-body">
-            <span class="card-tag">Hostel</span>
+            <span class="card-tag">Hostel - Yellow Leaf Harbor</span>
             <div class="card-title">Pacific Wave Travelers Hostel</div>
             <div class="card-description">Economical shared dorms and private rooms right next to the surf beach. Community kitchen and weekly tour discounts.</div>
             <div class="card-meta">
@@ -608,11 +676,14 @@
 
       <div class="grid">
         <div class="card">
-          <div class="card-header-bar volcano"><h3>Volcano Excursions</h3></div>
+          <div class="card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=700&q=80" alt="Guided Volcano Tour" />
+            <div class="card-img-overlay"><h3>Volcano Excursions</h3></div>
+          </div>
           <div class="card-body">
-            <span class="card-tag">Sightseeing</span>
+            <span class="card-tag">Sightseeing - Hotel Shuttle Included</span>
             <div class="card-title">Guided Volcano Tour</div>
-            <div class="card-description">Guided exploration to the base and observation lookout of Taniti's active volcano. Roundtrip shuttle service included.</div>
+            <div class="card-description">Guided exploration to the base and observation lookout of Taniti's active volcano. Roundtrip hotel shuttle service included.</div>
             <div class="card-meta">
               <span class="card-price">$65 / person</span>
               <button class="btn btn-primary" onclick="openBookingModal('Guided Volcano Tour', '$65')">Book Tour</button>
@@ -621,9 +692,12 @@
         </div>
 
         <div class="card">
-          <div class="card-header-bar"><h3>Rainforest Canopy</h3></div>
+          <div class="card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=700&q=80" alt="Rainforest Zip-Lining" />
+            <div class="card-img-overlay"><h3>Rainforest Canopy</h3></div>
+          </div>
           <div class="card-body">
-            <span class="card-tag">Adventure</span>
+            <span class="card-tag">Adventure - Shuttle Available</span>
             <div class="card-title">Rainforest Zip-Lining</div>
             <div class="card-description">Glide high over lush tropical rainforest canopies and scenic river valleys with certified expert climbing guides.</div>
             <div class="card-meta">
@@ -634,9 +708,12 @@
         </div>
 
         <div class="card">
-          <div class="card-header-bar"><h3>Ocean Adventures</h3></div>
+          <div class="card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1544551763-77ef2d0cfc6c?auto=format&fit=crop&w=700&q=80" alt="Snorkeling and Fishing" />
+            <div class="card-img-overlay"><h3>Ocean Adventures</h3></div>
+          </div>
           <div class="card-body">
-            <span class="card-tag">Water Sports</span>
+            <span class="card-tag">Water Sports - Yellow Leaf Bay</span>
             <div class="card-title">Snorkeling & Chartered Fishing</div>
             <div class="card-description">Half-day chartered boat trips leaving Yellow Leaf Bay. Includes snorkeling gear and deep-sea game fishing equipment.</div>
             <div class="card-meta">
@@ -647,9 +724,12 @@
         </div>
 
         <div class="card">
-          <div class="card-header-bar"><h3>Merriton Entertainment</h3></div>
+          <div class="card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=700&q=80" alt="Merriton Landing District" />
+            <div class="card-img-overlay"><h3>Merriton Entertainment</h3></div>
+          </div>
           <div class="card-body">
-            <span class="card-tag">Nightlife & Culture</span>
+            <span class="card-tag">Nightlife & Culture - Walkable</span>
             <div class="card-title">Merriton Landing District</div>
             <div class="card-description">Visit local art galleries, the history museum, arcade, bowling alley, and enjoy local microbreweries and dance clubs.</div>
             <div class="card-meta">
@@ -668,22 +748,28 @@
 
       <div class="grid">
         <div class="card">
-          <div class="card-header-bar food"><h3>Local Seafood</h3></div>
+          <div class="card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=700&q=80" alt="Local Seafood and Rice" />
+            <div class="card-img-overlay"><h3>Local Seafood & Rice</h3></div>
+          </div>
           <div class="card-body">
-            <span class="card-tag">Island Specialty</span>
+            <span class="card-tag">Island Specialty - Merriton Landing</span>
             <div class="card-title">Yellow Leaf Bay Catch</div>
             <div class="card-description">Authentic Tanitian cuisine featuring fresh daily catches of ocean fish served over aromatic island rice and native spices.</div>
             <div class="card-meta">
-              <span class="card-price">$$ • Taniti City</span>
+              <span class="card-price">$$ - Merriton Landing</span>
               <button class="btn btn-primary" onclick="openBookingModal('Yellow Leaf Bay Catch Table', 'Reservation')">Reserve Table</button>
             </div>
           </div>
         </div>
 
         <div class="card">
-          <div class="card-header-bar food"><h3>Pan-Asian Cuisine</h3></div>
+          <div class="card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1552611052-33e04de081de?auto=format&fit=crop&w=700&q=80" alt="Pan-Asian Cuisine" />
+            <div class="card-img-overlay"><h3>Pan-Asian Cuisine</h3></div>
+          </div>
           <div class="card-body">
-            <span class="card-tag">Pan-Asian</span>
+            <span class="card-tag">Pan-Asian - Merriton Landing</span>
             <div class="card-title">Pacific Rim Wok & Noodle</div>
             <div class="card-description">Stir-fried noodles, curries, and dumplings utilizing fresh island produce and seafood in an open-air terrace dining room.</div>
             <div class="card-meta">
@@ -694,27 +780,33 @@
         </div>
 
         <div class="card">
-          <div class="card-header-bar food"><h3>American Classics</h3></div>
+          <div class="card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=700&q=80" alt="American Classics" />
+            <div class="card-img-overlay"><h3>American Classics</h3></div>
+          </div>
           <div class="card-body">
-            <span class="card-tag">American Style</span>
+            <span class="card-tag">American Style - Taniti City</span>
             <div class="card-title">Taniti Grill & Tavern</div>
             <div class="card-description">Comfort food classics, burgers, steaks, and handcrafted local ales brewed right on the island. Great for families.</div>
             <div class="card-meta">
-              <span class="card-price">$$ • Taniti City</span>
+              <span class="card-price">$$ - Taniti City</span>
               <button class="btn btn-primary" onclick="openBookingModal('Taniti Grill Table', 'Reservation')">Reserve Table</button>
             </div>
           </div>
         </div>
 
         <div class="card">
-          <div class="card-header-bar food"><h3>Groceries & Marts</h3></div>
+          <div class="card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=700&q=80" alt="Supermarkets and 24/7 Convenience Store" />
+            <div class="card-img-overlay"><h3>Groceries & Marts</h3></div>
+          </div>
           <div class="card-body">
-            <span class="card-tag">Self-Catering</span>
+            <span class="card-tag">Self-Catering - Island-Wide</span>
             <div class="card-title">Supermarkets & 24/7 Mart</div>
             <div class="card-description">Two full supermarkets, two local grocers, and a 24-hour convenience store for travel snacks, produce, and toiletries.</div>
             <div class="card-meta">
               <span class="card-price">Open 24/7</span>
-              <button class="btn btn-light" onclick="navigateTo('faq')">View Locations</button>
+              <button class="btn btn-light" onclick="navigateTo('faq')">View Info</button>
             </div>
           </div>
         </div>
@@ -728,7 +820,10 @@
 
       <div class="grid">
         <div class="card">
-          <div class="card-header-bar transit"><h3>Public Bus Network</h3></div>
+          <div class="card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=700&q=80" alt="Taniti City Public Buses" />
+            <div class="card-img-overlay"><h3>Public Bus Network</h3></div>
+          </div>
           <div class="card-body">
             <span class="card-tag">Operating 5 AM - 11 PM</span>
             <div class="card-title">Taniti City Public Buses</div>
@@ -741,7 +836,10 @@
         </div>
 
         <div class="card">
-          <div class="card-header-bar transit"><h3>Rental Cars</h3></div>
+          <div class="card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?auto=format&fit=crop&w=700&q=80" alt="Island Car Rentals" />
+            <div class="card-img-overlay"><h3>Rental Cars</h3></div>
+          </div>
           <div class="card-body">
             <span class="card-tag">Airport Pickup</span>
             <div class="card-title">Island Car Rentals</div>
@@ -754,9 +852,12 @@
         </div>
 
         <div class="card">
-          <div class="card-header-bar transit"><h3>Bicycles & Helmets</h3></div>
+          <div class="card-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1485965120184-e220f721d03e?auto=format&fit=crop&w=700&q=80" alt="City and Coastal Bike Rentals" />
+            <div class="card-img-overlay"><h3>Bicycles & Helmets</h3></div>
+          </div>
           <div class="card-body">
-            <span class="card-tag">Eco-Friendly</span>
+            <span class="card-tag">Eco-Friendly - Helmet Included</span>
             <div class="card-title">City & Coastal Bike Rentals</div>
             <div class="card-description">Flat, walkable terrain makes bicycling around Taniti City and Merriton Landing easy. Helmets are provided and required by law.</div>
             <div class="card-meta">
@@ -808,6 +909,12 @@
       </div>
     </section>
   </main>
+
+  <!-- Website Footer with APA/Media Attribution -->
+  <footer>
+    <p>&copy; 2026 Taniti Island Tourism Authority. All lodging and excursions inspected and certified by the Government of Taniti.</p>
+    <p style="margin-top: 0.35rem;">Prototype stock imagery courtesy of <a href="https://unsplash.com" target="_blank" rel="noopener noreferrer">Unsplash</a> (Unsplash, n.d.).</p>
+  </footer>
 
   <!-- Interactive Booking Modal -->
   <div class="modal-overlay" id="bookingModal">
@@ -898,7 +1005,6 @@
     function openBookingModal(itemTitle, price) {
       modalTitle.innerText = `Reserve: ${itemTitle}`;
       modalSub.innerText = `Rate: ${price} | Instant government-verified booking.`;
-      // Default to today's date formatted YYYY-MM-DD
       document.getElementById('bookDate').value = new Date().toISOString().split('T')[0];
       modal.classList.add('active');
     }
@@ -911,14 +1017,12 @@
       e.preventDefault();
       closeBookingModal();
       
-      // Trigger confirmation toast
       toast.style.display = 'block';
       setTimeout(() => {
         toast.style.display = 'none';
       }, 4000);
     }
 
-    // Close modal on background click
     modal.addEventListener('click', (e) => {
       if (e.target === modal) closeBookingModal();
     });
